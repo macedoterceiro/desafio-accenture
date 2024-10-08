@@ -4,6 +4,7 @@ describe('api flow', () => {
   const password = "Accenture0!"
   let userID = ""
   let books = []
+  let token = ""
 
   it('create user', () => {
     cy.request({
@@ -29,6 +30,7 @@ describe('api flow', () => {
         "password": password
       }
     }).then((response) => {
+      token = response.body.token;
       expect(response.status).to.equals(200);
     })
   })
@@ -57,16 +59,46 @@ describe('api flow', () => {
     })
   })
 
-  it('rent books', () => {
+  it('rent first book', () => {
     cy.request({
-      method: "put",
-      url: "https://demoqa.com/BookStore/v1/Books/9781449331818",
+      method: "post",
+      url: "https://demoqa.com/BookStore/v1/Books",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
       body: {
         "userId": userID,
-        "isbn": "9781449331818"
+        "collectionOfIsbns": [
+          {
+            "isbn": "9781449331818"
+          }
+        ]
       }
     }).then((response) => {
-      expect(response.status).to.equals(200);
+      expect(response.status).to.equals(201);
+      expect(response.body).to.have.property('books');
+    })
+  })
+
+  it('rent another book', () => {
+    cy.request({
+      method: "post",
+      url: "https://demoqa.com/BookStore/v1/Books",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token // Não documentado a necessidade nem a sintaxe do token, verificar documentação da api pra possivel atualização
+      },
+      body: {
+        "userId": userID,
+        "collectionOfIsbns": [
+          {
+            "isbn": "9781449365035"
+          }
+        ]
+      }
+    }).then((response) => {
+      expect(response.status).to.equals(201);
       expect(response.body).to.have.property('books');
     })
   })
@@ -74,6 +106,10 @@ describe('api flow', () => {
   it('show user data', () => {
     cy.request({
       method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
       url: "https://demoqa.com/Account/v1/User/" + userID,
     }).then((response) => {
       expect(response.status).to.equals(200);
