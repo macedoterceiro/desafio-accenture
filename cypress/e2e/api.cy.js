@@ -65,7 +65,7 @@ describe('api flow', () => {
       url: "https://demoqa.com/BookStore/v1/Books",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token
+        Authorization: "Bearer " + token // Não documentado a necessidade nem a sintaxe do token, verificar documentação da api pra possivel atualização
       },
       body: {
         "userId": userID,
@@ -87,7 +87,7 @@ describe('api flow', () => {
       url: "https://demoqa.com/BookStore/v1/Books",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token // Não documentado a necessidade nem a sintaxe do token, verificar documentação da api pra possivel atualização
+        Authorization: "Bearer " + token
       },
       body: {
         "userId": userID,
