@@ -1,7 +1,7 @@
 describe('template spec', () => {
   it('passes', () => {
 
-    cy.on('uncaught:exception', () => false) //ignorar erro intermintente que impedia de fechar a janela
+    cy.on('uncaught:exception', () => false) //ignorar erro intermintente
 
     cy.visit('/');
 

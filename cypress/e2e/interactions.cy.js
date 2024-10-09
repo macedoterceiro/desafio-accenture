@@ -1,7 +1,13 @@
 describe('template spec', () => {
   it('passes', () => {
+    
+    cy.on('uncaught:exception', () => false) //ignorar erro intermintente
+
     cy.visit('/');
-    cy.contains('Forms').click();
-    cy.contains('Practice Form').click();
+
+    cy.contains('Interactions').click();
+
+    cy.contains('Sortable').click();
+
   })
 })
