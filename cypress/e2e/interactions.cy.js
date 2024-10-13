@@ -9,5 +9,7 @@ describe('template spec', () => {
 
     cy.contains('Sortable').click();
 
+    // incompleto, feito no selenium em outro projeto
+    
   })
 })
