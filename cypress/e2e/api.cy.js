@@ -116,4 +116,17 @@ describe('api flow', () => {
       expect(response.body).to.have.property('books');
     })
   })
+
+  it('remove user data', () => {
+    cy.request({
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      url: "https://demoqa.com/Account/v1/User/" + userID,
+    }).then((response) => {
+      expect(response.status).to.equals(204);
+    })
+  })
 })

@@ -15,7 +15,7 @@ describe('template spec', () => {
     });
 
     cy.get('#progressBar').find('.progress-bar').invoke('attr', 'aria-valuenow').then(parseInt).should('be.lessThan', 25);
-    cy.wait(500)
+    cy.wait(5000)
 
     cy.get('#startStopButton').click().then(() => {
       cy.wait(8800)

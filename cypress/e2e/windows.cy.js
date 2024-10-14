@@ -23,8 +23,8 @@ describe('template spec', () => {
     .wait(1000)
     .invoke('close');
 
-    // incompleto, por o cypress não ter suporte ao controle de janelas adicionais, e a necessidade da ganela ser aberta e fechada ao invés de capturar o evento
-    // seria necessário ou fazer o processo duas vezes de modo diferente ou fazer em outra plataforma, para verificar o texto da janela aberta
+    // incompleto, por o cypress não ter suporte ao controle de janelas adicionais, e a necessidade da janela ser aberta e fechada ao invés de capturar o evento
+    // seria necessário ou fazer o processo duas vezes de modo diferentes ou fazer em outra plataforma, para verificar o texto da janela aberta
 
   })
 })
